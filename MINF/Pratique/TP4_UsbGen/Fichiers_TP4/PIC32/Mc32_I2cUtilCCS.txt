@@ -1,0 +1,2 @@
+La librairie I2C Mc32_I2cUtilCCS (Mc32_I2cUtilCCS .h et .c) est disponible sous :
+...\Maitres-Seul\SLO\Modules\SL229_MINF\PIC32MX_Utilitaires(PlibHarmony)\I2C

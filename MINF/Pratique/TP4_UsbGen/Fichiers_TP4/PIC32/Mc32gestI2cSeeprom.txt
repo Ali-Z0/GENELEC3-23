@@ -1,0 +1,1 @@
+La librairie d'accès à la mémoire EEPROM du MCP79411 Mc32gestI2cSeeprom (Mc32gestI2cSeeprom.h et .c) est developpée par les étudiants en réalisant l'exercice 9-1.
