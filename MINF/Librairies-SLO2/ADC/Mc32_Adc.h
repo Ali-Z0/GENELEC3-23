@@ -25,10 +25,6 @@
 /* ************************************************************************** */
 /* ************************************************************************** */
 #include "app.h"
-/* This section lists the other files that are included in this file.
- */
-
-/* TODO:  Include other files here if needed. */
 
 
 /* Provide C++ Compatibility */
@@ -45,17 +41,17 @@ extern "C" {
 	#define     ADC_V_GAIN          	1
 	#define		ADC_V_REF				3.3
 	#define		ADC_NB_BITS				10
-	//#define     ADC_AN_SCAN_ADDRES  	0x0008
+
+    #define     ADC_RES                 (3.3/1024.0)
 
 	#define 	ADC_CH_ON				1
 	#define 	ADC_CH_OFF				0
 
-
 	/* --------- CHANNELS SELECTION --------- */
 	#define		ADC_AN0					ADC_CH_OFF
-	#define		ADC_AN1					ADC_CH_OFF
-	#define		ADC_AN2					ADC_CH_OFF
-	#define		ADC_AN3					ADC_CH_ON
+	#define		ADC_AN1					ADC_CH_ON
+	#define		ADC_AN2					ADC_CH_ON
+	#define		ADC_AN3					ADC_CH_OFF
 	#define		ADC_AN4					ADC_CH_OFF
 	#define		ADC_AN5					ADC_CH_OFF
 	#define		ADC_AN6					ADC_CH_OFF
@@ -68,6 +64,8 @@ extern "C" {
 	#define		ADC_AN13				ADC_CH_OFF
 	#define		ADC_AN14				ADC_CH_OFF
 	#define		ADC_AN15				ADC_CH_OFF
+
+    #define		ADC_N_CHANNELS	(ADC_AN0 + ADC_AN1 + ADC_AN2 + ADC_AN3 + ADC_AN4 + ADC_AN5 + ADC_AN6 + ADC_AN7 + ADC_AN8 + ADC_AN9 + ADC_AN10 + ADC_AN11 + ADC_AN12 + ADC_AN13 + ADC_AN14 + ADC_AN15)
 	/* ************************************************************************** */
     
 
@@ -77,12 +75,60 @@ extern "C" {
     // *****************************************************************************
     // *****************************************************************************
     typedef struct{ 
-        uint16_t AN0;
-		uint16_t AN1;
-		uint16_t AN2;
-		uint16_t AN3;
-		uint16_t AN4;
-		uint16_t AN5;
+        union {
+            struct {
+            #if(ADC_AN0 == ADC_CH_ON)
+                uint16_t AN0;
+            #endif
+            #if(ADC_AN1 == ADC_CH_ON)
+                uint16_t AN1;
+            #endif
+            #if(ADC_AN2 == ADC_CH_ON)
+                uint16_t AN2;
+            #endif
+            #if(ADC_AN3 == ADC_CH_ON)
+                uint16_t AN3;
+            #endif
+            #if(ADC_AN4 == ADC_CH_ON)
+                uint16_t AN4;
+            #endif
+            #if(ADC_AN5 == ADC_CH_ON)
+                uint16_t AN5;
+            #endif
+            #if(ADC_AN6 == ADC_CH_ON)
+                uint16_t AN6;
+            #endif
+            #if(ADC_AN7 == ADC_CH_ON)
+                uint16_t AN7;
+            #endif
+            #if(ADC_AN8 == ADC_CH_ON)
+                uint16_t AN8;
+            #endif
+            #if(ADC_AN9 == ADC_CH_ON)
+                uint16_t AN9;
+            #endif
+            #if(ADC_AN10 == ADC_CH_ON)
+                uint16_t AN10;
+            #endif
+            #if(ADC_AN11 == ADC_CH_ON)
+                uint16_t AN11;
+            #endif
+            #if(ADC_AN12 == ADC_CH_ON)
+                uint16_t AN12;
+            #endif
+            #if(ADC_AN13 == ADC_CH_ON)
+                uint16_t AN13;
+            #endif
+            #if(ADC_AN14 == ADC_CH_ON)
+                uint16_t AN14;
+            #endif
+            #if(ADC_AN15 == ADC_CH_ON)
+                uint16_t AN15;
+            #endif
+            }channels;
+            
+            uint16_t key[ADC_N_CHANNELS];
+        }params;
     }S_ADCResults;
     // *****************************************************************************
 
@@ -94,16 +140,16 @@ extern "C" {
     // *****************************************************************************
 
     /* Convert voltage into pressure in [Bar] */
-    float Press_voltageToPressure(float voltage);
+//    float Press_voltageToPressure(float voltage);
     
     /* Convert raw adc value to voltage */
-    float Press_RawToVoltage(float raw);
+//    float Press_RawToVoltage(float raw);
     
-    void Press_InitADC (void);
+    void ADC_Init (void);
     
-    S_ADCResults Press_ReadAllADC( void );
+    S_ADCResults ADC_ReadAll( void ) ;
     
-    float Press_readPressure( void );
+//    float Press_readPressure( void );
     // *****************************************************************************
     
 
