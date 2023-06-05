@@ -174,7 +174,7 @@ void ADC_Init (void){
 
 S_ADCResults ADC_ReadAll( void ) {
     //structure de valeurs brutes des ADCs
-    volatile S_ADCResults rawResult;
+    S_ADCResults rawResult;
     // Traitement buffer
     ADC_RESULT_BUF_STATUS BufStatus;
     //stop sample/convert
@@ -183,25 +183,41 @@ S_ADCResults ADC_ReadAll( void ) {
     BufStatus = PLIB_ADC_ResultBufferStatusGet(ADC_ID_1);
     //Buffer 8 bits -> 0 à 7 -> expliqué après
     if (BufStatus == ADC_FILLING_BUF_0TO7) {
-        rawResult.params.key[0] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 0);
-        rawResult.params.key[1] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 1);
-        rawResult.params.key[2] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 2);
-        rawResult.params.key[3] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 3);
-        rawResult.params.key[4] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 4);
-        rawResult.params.key[5] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 5);
-        rawResult.params.key[6] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 6);
-        rawResult.params.key[7] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 7);
+        if(ADC_N_CHANNELS >= 1)
+            rawResult.params.key[0] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 0);
+        if(ADC_N_CHANNELS >= 2)
+            rawResult.params.key[1] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 1);
+        if(ADC_N_CHANNELS >= 3)
+            rawResult.params.key[2] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 2);
+        if(ADC_N_CHANNELS >= 4)
+            rawResult.params.key[3] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 3);
+        if(ADC_N_CHANNELS >= 5)
+            rawResult.params.key[4] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 4);
+        if(ADC_N_CHANNELS >= 6)
+            rawResult.params.key[5] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 5);
+        if(ADC_N_CHANNELS >= 7)
+            rawResult.params.key[6] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 6);
+        if(ADC_N_CHANNELS >= 8)
+            rawResult.params.key[7] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 7);
     }
     else //Buffer 8 bits -> 8 à 15
     {
-        rawResult.params.key[0] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 8);
-        rawResult.params.key[1] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 9);
-        rawResult.params.key[2] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 10);
-        rawResult.params.key[3] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 11);
+        if(ADC_N_CHANNELS >= 1)
+            rawResult.params.key[0] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 8);
+        if(ADC_N_CHANNELS >= 2)
+            rawResult.params.key[1] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 9);
+        if(ADC_N_CHANNELS >= 3)
+            rawResult.params.key[2] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 10);
+        if(ADC_N_CHANNELS >= 4)
+            rawResult.params.key[3] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 11);
+        if(ADC_N_CHANNELS >= 5)
         rawResult.params.key[4] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 12);
-        rawResult.params.key[5] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 13);
-        rawResult.params.key[6] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 14);
-        rawResult.params.key[7] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 15);
+        if(ADC_N_CHANNELS >= 6)
+            rawResult.params.key[5] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 13);
+        if(ADC_N_CHANNELS >= 7)
+            rawResult.params.key[6] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 14);
+        if(ADC_N_CHANNELS >= 8)
+            rawResult.params.key[7] = PLIB_ADC_ResultGetByIndex(ADC_ID_1, 15);
     }
     // Retablit Auto start sampling
     PLIB_ADC_SampleAutoStartEnable(ADC_ID_1);

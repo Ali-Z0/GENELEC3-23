@@ -49,9 +49,9 @@ extern "C" {
 
 	/* --------- CHANNELS SELECTION --------- */
 	#define		ADC_AN0					ADC_CH_OFF
-	#define		ADC_AN1					ADC_CH_OFF
-	#define		ADC_AN2					ADC_CH_OFF
-	#define		ADC_AN3					ADC_CH_ON
+	#define		ADC_AN1					ADC_CH_ON
+	#define		ADC_AN2					ADC_CH_ON
+	#define		ADC_AN3					ADC_CH_OFF
 	#define		ADC_AN4					ADC_CH_OFF
 	#define		ADC_AN5					ADC_CH_OFF
 	#define		ADC_AN6					ADC_CH_OFF
