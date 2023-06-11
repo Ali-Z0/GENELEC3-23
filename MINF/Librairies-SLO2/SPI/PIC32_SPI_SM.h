@@ -12,10 +12,12 @@
  * Handle SPI by state machine
  * 
  * @authors
+ * Created  by Miguel Santos
+ * Inspired by Caroline Miéville
+ * Reviewed by Ali Zoubir
  * 
  * The official version is available at : 
  * https://github.com/Miguel-SLO/MINF-GENELEC3.git
- * Only peoples mentionned in Readme.md contributed to this code
  * 
  * @creation 20.05.2023
  * @lastmodif 20.05.2023
